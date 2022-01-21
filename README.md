@@ -7,7 +7,7 @@ Popover widget to show content in a styled popover element
 You can use this widget to render any content when interacting with the trigger. You can set the trigger on hover, left-click and right-click. When choosing right-click then the popover behaves like a context-menu. The widget will also work on mobile devices, the trigger will default to on touch.
 
 ### 1.1 Example
-![Browser Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/docs/images/popover_browser_example.png)
+![Browser Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_browser_example.png?raw=true)
 
 ## 2. Usage
 
@@ -15,10 +15,11 @@ You can use this widget to render any content when interacting with the trigger.
 * Place any content in the content-container
 
 ### 2.1 Modeler example
-![Modeler Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/docs/images/modeler_example.png)
+![Modeler Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/modeler_example.png?raw=true)
+
 
 ### 2.2 Configuration example
-![Configuration Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/docs/images/popover_general_tab.png)
+![Configuration Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_general_tab.png?raw=true)
 
 ## 3. Use Cases
 
