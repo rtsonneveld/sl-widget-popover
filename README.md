@@ -8,8 +8,7 @@ You can use this widget to render any content when interacting with the trigger.
 
 ### 1.1 Example
 
-![Browser Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_browser_example.png)
-
+[<img alt="alt_text" width="400px" src="https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_browser_example.png" />](Browser Example)
 ## 2. Usage
 
 * Place any content in the triggercontainer to trigger content-container
