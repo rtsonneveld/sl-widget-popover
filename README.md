@@ -8,9 +8,8 @@ You can use this widget to render any content when interacting with the trigger.
 
 ### 1.1 Example
 Browser Example
-![](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_browser_example.png?raw=true)
 
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/popover_browser_example.png" width="200"/>
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/popover_browser_example.png" width="600"/>
 
 ## 2. Usage
 
@@ -18,11 +17,13 @@ Browser Example
 * Place any content in the content-container
 
 ### 2.1 Modeler example
-![Modeler Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/modeler_example.png?raw=true)
+
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/modeler_example.png" width="600"/>
+
 
 
 ### 2.2 Configuration example
-![Configuration Example](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_general_tab.png?raw=true)
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/popover_general_tab.png" width="600"/>
 
 ## 3. Use Cases
 
