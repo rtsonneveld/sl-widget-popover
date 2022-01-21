@@ -1,5 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
-import { ReactElement, createElement, useState, useRef } from "react";
+import React, { ReactNode, useEffect, ReactElement, createElement, useState, useRef } from "react";
 import { eventInsideTarget } from "src/utils/eventInsideTarget";
 import { eventOutsideTarget } from "src/utils/eventOutsideTarget";
 import { PlacementEnum, TriggerModeEnum } from "typings/SLPopoverProps";
@@ -16,7 +15,7 @@ interface Props {
     popoverContent: ReactNode;
 }
 
-declare var window: any;
+declare let window: any;
 
 export function Popover(props: Props): ReactElement {
     const [isVisible, _setIsVisible] = useState(false);
@@ -28,11 +27,11 @@ export function Popover(props: Props): ReactElement {
     const setIsVisible = (visible: boolean) => {
         isVisibleRef.current = visible;
         _setIsVisible(visible);
-    }
+    };
 
     const setVisibleByFocus = (visible: boolean) => {
         visibleByFocusRef.current = visible;
-    }
+    };
 
     const registerPublicApi = () => {
         if (window && !window.slPopover) {
@@ -41,8 +40,8 @@ export function Popover(props: Props): ReactElement {
 
         window.slPopover[props.name] = {
             hideMenu: () => hideMenu()
-        }
-    }
+        };
+    };
 
     const registerActivePopover = () => {
         if (window && !window.slPopover) {
@@ -53,7 +52,7 @@ export function Popover(props: Props): ReactElement {
             name: props.name,
             autoClose: props.autoClose
         };
-    }
+    };
 
     const showMenu = (x?: number, y?: number) => {
         if (window && window.slPopover) {
@@ -72,19 +71,19 @@ export function Popover(props: Props): ReactElement {
             registerActivePopover();
         }
 
-        if (props.triggerMode === 'rightClick') {
+        if (props.triggerMode === "rightClick") {
             if (x && y) {
-                popover?.current?.updateVirtualElement(x, y)
+                popover?.current?.updateVirtualElement(x, y);
                 popover?.current?.update();
             }
         }
-    }
+    };
 
     const hideMenu = () => {
         if (isVisibleRef.current) {
             setIsVisible(false);
         }
-    }
+    };
 
     const outsidePointerEventListener = (event: MouseEvent | TouchEvent | FocusEvent) => {
         const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
@@ -92,7 +91,7 @@ export function Popover(props: Props): ReactElement {
         if (targetOutside) {
             hideMenu();
         }
-    }
+    };
 
     const outsideFocusEvent = (event: FocusEvent) => {
         const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
@@ -101,7 +100,7 @@ export function Popover(props: Props): ReactElement {
             hideMenu();
             setVisibleByFocus(false);
         }
-    }
+    };
 
     const outsideHoverEvent = (event: MouseEvent) => {
         const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
@@ -109,28 +108,27 @@ export function Popover(props: Props): ReactElement {
         if (targetOutside) {
             hideMenu();
         }
-    }
-
+    };
 
     const initOutsideListener = () => {
         // document.addEventListener('focusout', outsideFocusEvent);
 
         if (props.autoClose) {
-            if (props.triggerMode === 'hover') {
-                document.addEventListener('mouseover', outsideHoverEvent);
+            if (props.triggerMode === "hover") {
+                document.addEventListener("mouseover", outsideHoverEvent);
             } else {
-                document.addEventListener('mousedown', outsidePointerEventListener);
-                document.addEventListener('touchstart', outsidePointerEventListener);
+                document.addEventListener("mousedown", outsidePointerEventListener);
+                document.addEventListener("touchstart", outsidePointerEventListener);
             }
         }
-    }
+    };
 
     const destroyOutsideListener = () => {
-        document.removeEventListener('focusout', outsideFocusEvent);
-        document.removeEventListener('mouseover', outsideHoverEvent);
-        document.removeEventListener('mousedown', outsidePointerEventListener);
-        document.removeEventListener('touchstart', outsidePointerEventListener);
-    }
+        document.removeEventListener("focusout", outsideFocusEvent);
+        document.removeEventListener("mouseover", outsideHoverEvent);
+        document.removeEventListener("mousedown", outsidePointerEventListener);
+        document.removeEventListener("touchstart", outsidePointerEventListener);
+    };
 
     const onHoverEvent = (event: MouseEvent) => {
         const insideTarget = eventInsideTarget(event, popover.current, menuTrigger);
@@ -138,15 +136,15 @@ export function Popover(props: Props): ReactElement {
         if (insideTarget) {
             showMenu();
         }
-    }
+    };
 
     const onClickEvent = (event: MouseEvent | TouchEvent) => {
         const insideTarget = eventInsideTarget(event, popover.current, menuTrigger);
 
         if (insideTarget) {
-            isVisibleRef.current ? hideMenu() : showMenu();
+            return isVisibleRef.current ? hideMenu() : showMenu();
         }
-    }
+    };
 
     const onFocusEvent = (event: FocusEvent) => {
         const insideTarget = eventInsideTarget(event, popover.current, menuTrigger);
@@ -155,7 +153,7 @@ export function Popover(props: Props): ReactElement {
             setVisibleByFocus(true);
             showMenu();
         }
-    }
+    };
 
     const onContextMenuEvent = (event: MouseEvent) => {
         const insideTarget = eventInsideTarget(event, popover.current, menuTrigger);
@@ -163,40 +161,36 @@ export function Popover(props: Props): ReactElement {
         if (insideTarget) {
             event.preventDefault();
 
-            showMenu(
-                event.clientX,
-                event.clientY
-            );
+            showMenu(event.clientX, event.clientY);
         }
-    }
+    };
 
     const initInsideListener = () => {
-        if (props.triggerMode === 'leftClick') {
-            document.addEventListener('mousedown', onClickEvent);
-            document.addEventListener('touchstart', onClickEvent);
+        if (props.triggerMode === "leftClick") {
+            document.addEventListener("mousedown", onClickEvent);
+            document.addEventListener("touchstart", onClickEvent);
         }
 
-        if (props.triggerMode === 'hover') {
-            document.addEventListener('mouseover', onHoverEvent);
+        if (props.triggerMode === "hover") {
+            document.addEventListener("mouseover", onHoverEvent);
         }
 
-        if (props.triggerMode === 'leftClick' || props.triggerMode === 'hover') {
+        if (props.triggerMode === "leftClick" || props.triggerMode === "hover") {
             // document.addEventListener('focusin', onFocusEvent)
         }
 
-        if (props.triggerMode === 'rightClick') {
-            document.addEventListener('contextmenu', onContextMenuEvent);
+        if (props.triggerMode === "rightClick") {
+            document.addEventListener("contextmenu", onContextMenuEvent);
         }
-        
-    }
+    };
 
     const destroyInsideListener = () => {
-        document.removeEventListener('mousedown', onClickEvent);
-        document.removeEventListener('touchstart', onClickEvent);
-        document.removeEventListener('mouseover', onHoverEvent);
-        document.removeEventListener('focusin', onFocusEvent);
-        document.removeEventListener('contextmenu', onContextMenuEvent);
-    }
+        document.removeEventListener("mousedown", onClickEvent);
+        document.removeEventListener("touchstart", onClickEvent);
+        document.removeEventListener("mouseover", onHoverEvent);
+        document.removeEventListener("focusin", onFocusEvent);
+        document.removeEventListener("contextmenu", onContextMenuEvent);
+    };
 
     useEffect(() => {
         if (menuTrigger) {
@@ -205,35 +199,33 @@ export function Popover(props: Props): ReactElement {
             registerPublicApi();
         }
 
-        return (() => {
+        return () => {
             destroyOutsideListener();
             destroyInsideListener();
-        })
-    }, [menuTrigger])
+        };
+    }, [menuTrigger]);
 
     const renderMenuTrigger = () => (
-        <div
-            className='sl-popover-trigger'
-            ref={setMenuTrigger}
-        >
+        <div className="sl-popover-trigger" ref={setMenuTrigger}>
             {props.popoverTriggerContent}
         </div>
-    )
+    );
 
     return (
         <React.Fragment>
-            { renderMenuTrigger() }
-            { <Popper
-                className={props.className}
-                ref={popover}
-                visible={isVisible}
-                showArrow={props.showArrow}
-                trigger={menuTrigger}
-                menuContent={props.popoverContent}
-                placement={props.placement}
-                triggerMode={props.triggerMode}
+            {renderMenuTrigger()}
+            {
+                <Popper
+                    className={props.className}
+                    ref={popover}
+                    visible={isVisible}
+                    showArrow={props.showArrow}
+                    trigger={menuTrigger}
+                    menuContent={props.popoverContent}
+                    placement={props.placement}
+                    triggerMode={props.triggerMode}
                 />
             }
         </React.Fragment>
-    )
+    );
 }
