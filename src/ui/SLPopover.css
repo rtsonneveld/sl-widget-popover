@@ -1,0 +1,69 @@
+.sl-popover {
+    filter: drop-shadow(var(--box-shadow, 0 0 4px rgba(0, 0, 0, .25)));
+    z-index: var(--z-index, 9999999);
+}
+
+.sl-popover-content {
+    color: var(--color, #000);
+    background: var(--bg, #fff);
+    border-radius: 4px;
+    padding: 4px;
+    font-size: var(--font-size, 1.4rem);
+}
+
+.sl-popover-trigger {
+    display: inline;
+}
+
+.sl-popover.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .25s ease-in, visibility .25s ease-in;
+}
+
+.sl-popover.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .15s ease-out, visibility .15s ease-out;
+}
+
+.sl-popover-arrow,
+.sl-popover-arrow::before {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+}
+
+.sl-popover-arrow {
+    visibility: hidden;
+}
+
+.sl-popover-arrow::before {
+    visibility: visible;
+    content: '';
+    transform: rotate(45deg);
+    background: var(--bg, #fff);
+}
+
+.sl-popover[data-popper-placement^='top'] > .sl-popover-arrow {
+    bottom: -4px;
+}
+
+.sl-popover[data-popper-placement^='bottom'] > .sl-popover-arrow {
+    top: -4px;
+}
+
+.sl-popover[data-popper-placement^='left'] > .sl-popover-arrow {
+    right: -4px;
+}
+
+.sl-popover[data-popper-placement^='right'] > .sl-popover-arrow {
+    left: -4px;
+}
+
+@media(prefers-reduced-motion) {
+    .sl-popover.sl-popover.is-hidden,
+    .sl-popover.sl-popover.is-visible {
+        transition: none;
+    }
+}
