@@ -1,28 +1,35 @@
-## SLPopover
-[Popover widget to show content in a styled popover element]
+# SL Popover
 
-## Features
-[feature highlights]
+Popover widget to show content in a styled popover element
+
+## Description
+
+You can use this widget to render any content when interacting with the trigger. You can set the trigger on hover, left-click and right-click. When choosing right-click then the popover behaves like a context-menu.
+
+### Example
+
+![Browser Example](docs/images/popover_browser_example.png)
 
 ## Usage
-[step by step instructions]
 
-## Demo project
-[link to sandbox]
+* Place any content in the triggercontainer to trigger content-container
+* Place any content in the content-container
 
-## Issues, suggestions and feature requests
-[link to GitHub issues]
+### Modeler example
 
-## Development and contribution
+![Modeler Example](docs/images/modeler_example.png)
 
-1. Install NPM package dependencies by using: `npm install`. If you use NPM v7.x.x, which can be checked by executing `npm -v`, execute: `npm install --legacy-peer-deps`.
-1. Run `npm start` to watch for code changes. On every change:
-    - the widget will be bundled;
-    - the bundle will be included in a `dist` folder in the root directory of the project;
-    - the bundle will be included in the `deployment` and `widgets` folder of the Mendix test project.
+## Use Cases
 
-[specify contribution]
+* This can be used to create a context menu on a page.
+* This can be used with or without context.
 
+## Customization
 
-### Image example
-![Getting Started](docs/images/trekker.jpg)
+To customize the content-container you can edit the styling with css using the classname:
+
+* .sl-popover-content
+
+## Image example
+
+![Modeler Example](docs/images/modeler_example.png)
