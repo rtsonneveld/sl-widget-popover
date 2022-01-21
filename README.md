@@ -10,7 +10,7 @@ You can use this widget to render any content when interacting with the trigger.
 Browser Example
 ![](https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_browser_example.png?raw=true)
 
-<img src="https://github.com/simplylogicninjas/sl-widget-popover/tree/main/docs/images/popover_browser_example.png" width="200"/>
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/popover_browser_example.png" width="200"/>
 
 ## 2. Usage
 
