@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, ReactElement, createElement, useState, useRef } from "react";
 import { eventInsideTarget } from "src/utils/eventInsideTarget";
+import { eventInsideTriggerTarget } from "src/utils/eventInsideTriggerTarget";
 import { eventOutsideTarget } from "src/utils/eventOutsideTarget";
 import { PlacementEnum, TriggerModeEnum } from "typings/SLPopoverProps";
 import Popper, { PopoverRef } from "./Popper";
@@ -139,7 +140,7 @@ export function Popover(props: Props): ReactElement {
     };
 
     const onClickEvent = (event: MouseEvent | TouchEvent) => {
-        const insideTarget = eventInsideTarget(event, popover.current, menuTrigger);
+        const insideTarget = eventInsideTriggerTarget(event, menuTrigger);
 
         if (insideTarget) {
             return isVisibleRef.current ? hideMenu() : showMenu();
