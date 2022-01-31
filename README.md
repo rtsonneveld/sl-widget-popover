@@ -19,6 +19,7 @@ You can use this widget to render any content when interacting with the trigger.
 
 <img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/modeler_example.png" width="300">
 <img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/modeler_example_2.png" width="300">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-popover/main/docs/images/modeler_example_filled.png" width="300">
 
 ### 2.2 Configuration example
 
