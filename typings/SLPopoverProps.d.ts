@@ -15,6 +15,7 @@ export interface SLPopoverContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     triggerMode: TriggerModeEnum;
+    offsetDistance: number;
     autoClose: boolean;
     showArrow: boolean;
     placement: PlacementEnum;
@@ -28,6 +29,7 @@ export interface SLPopoverPreviewProps {
     styleObject?: CSSProperties;
     readOnly: boolean;
     triggerMode: TriggerModeEnum;
+    offsetDistance: number | null;
     autoClose: boolean;
     showArrow: boolean;
     placement: PlacementEnum;

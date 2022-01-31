@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { ReactNode, useEffect, ReactElement, createElement, useState, useRef } from "react";
 import { eventInsideTarget } from "src/utils/eventInsideTarget";
 import { eventInsideTriggerTarget } from "src/utils/eventInsideTriggerTarget";
@@ -14,6 +15,7 @@ interface Props {
     placement: PlacementEnum;
     popoverTriggerContent: ReactNode;
     popoverContent: ReactNode;
+    offsetDistance: number;
 }
 
 declare let window: any;
@@ -132,7 +134,7 @@ export function Popover(props: Props): ReactElement {
     };
 
     const onHoverEvent = (event: MouseEvent) => {
-        const insideTarget = eventInsideTarget(event, popover.current, menuTrigger);
+        const insideTarget = eventInsideTriggerTarget(event, menuTrigger);
 
         if (insideTarget) {
             showMenu();
@@ -157,7 +159,7 @@ export function Popover(props: Props): ReactElement {
     };
 
     const onContextMenuEvent = (event: MouseEvent) => {
-        const insideTarget = eventInsideTarget(event, popover.current, menuTrigger);
+        const insideTarget = eventInsideTriggerTarget(event, menuTrigger);
 
         if (insideTarget) {
             event.preventDefault();
@@ -206,8 +208,16 @@ export function Popover(props: Props): ReactElement {
         };
     }, [menuTrigger]);
 
+    const getPopoverTriggerClassnames = () => {
+        return classNames({
+            [`${props.className}`]: true,
+            'sl-popover-trigger': true,
+            'is-active': isVisible
+        })
+    }
+
     const renderMenuTrigger = () => (
-        <div className="sl-popover-trigger" ref={setMenuTrigger}>
+        <div className={getPopoverTriggerClassnames()} ref={setMenuTrigger}>
             {props.popoverTriggerContent}
         </div>
     );
@@ -225,6 +235,7 @@ export function Popover(props: Props): ReactElement {
                     menuContent={props.popoverContent}
                     placement={props.placement}
                     triggerMode={props.triggerMode}
+                    offsetDistance={props.offsetDistance}
                 />
             }
         </React.Fragment>

@@ -17,9 +17,13 @@
                         <enumerationValue key="rightClick">Right click</enumerationValue>
                     </enumerationValues>
                 </property>
+                <property key="offsetDistance" type="integer" defaultValue="0">
+                    <caption>Offset distance (pixels)</caption>
+                    <description>Place the popover content closer or farther away from the popover trigger</description>
+                </property>
                 <property key="autoClose" type="boolean" defaultValue="true">
                     <caption>Auto close</caption>
-                    <description>Auto close popover if user clicks outside the popover content and trigger</description>
+                    <description>Auto close popover if user clicks outside the popover content and trigger. This only works if "Trigger mode" is "Left click".</description>
                 </property>
                 <property key="showArrow" type="boolean" defaultValue="true">
                     <caption>Show arrow</caption>

@@ -36,6 +36,7 @@
 
 .sl-popover-arrow {
     visibility: hidden;
+    z-index: -1;
 }
 
 .sl-popover-arrow::before {

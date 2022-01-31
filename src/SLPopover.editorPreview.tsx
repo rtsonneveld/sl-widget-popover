@@ -8,6 +8,7 @@ export function preview(props: SLPopoverPreviewProps): ReactElement {
     return (
         <Popover
             {...props}
+            offsetDistance={0}
             name={`popover-${popoverIndex++}`}
             popoverContent={
                 <props.popoverContent.renderer>
