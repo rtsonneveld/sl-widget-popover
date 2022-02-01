@@ -211,10 +211,10 @@ export function Popover(props: Props): ReactElement {
     const getPopoverTriggerClassnames = () => {
         return classNames({
             [`${props.className}`]: true,
-            'sl-popover-trigger': true,
-            'is-active': isVisible
-        })
-    }
+            "sl-popover-trigger": true,
+            "is-active": isVisible
+        });
+    };
 
     const renderMenuTrigger = () => (
         <div className={getPopoverTriggerClassnames()} ref={setMenuTrigger}>
