@@ -116,10 +116,10 @@ export function Popover(props: Props): ReactElement {
     const initOutsideListener = () => {
         // document.addEventListener('focusout', outsideFocusEvent);
 
-        if (props.autoClose) {
-            if (props.triggerMode === "hover") {
-                document.addEventListener("mouseover", outsideHoverEvent);
-            } else {
+        if (props.triggerMode === "hover") {
+            document.addEventListener("mouseover", outsideHoverEvent);
+        } else {
+            if (props.autoClose) {
                 document.addEventListener("mousedown", outsidePointerEventListener);
                 document.addEventListener("touchstart", outsidePointerEventListener);
             }
