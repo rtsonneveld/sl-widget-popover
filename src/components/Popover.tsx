@@ -89,39 +89,42 @@ export function Popover(props: Props): ReactElement {
     };
 
     const outsidePointerEventListener = (event: MouseEvent | TouchEvent | FocusEvent) => {
-        const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
+        if (isVisibleRef.current) {
+            const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
 
-        if (targetOutside) {
-            hideMenu();
+            if (targetOutside) {
+                hideMenu();
+            }
         }
     };
 
     const outsideFocusEvent = (event: FocusEvent) => {
-        const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
+        if (isVisibleRef.current) {
+            const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
 
-        if (visibleByFocusRef.current && targetOutside) {
-            hideMenu();
-            setVisibleByFocus(false);
+            if (visibleByFocusRef.current && targetOutside) {
+                hideMenu();
+                setVisibleByFocus(false);
+            }
         }
     };
 
     const outsideHoverEvent = (event: MouseEvent) => {
-        const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
+        if (isVisibleRef.current) {
+            const targetOutside = eventOutsideTarget(event, popover.current, menuTrigger);
 
-        if (targetOutside) {
-            hideMenu();
+            if (targetOutside) {
+                hideMenu();
+            }
         }
     };
 
     const initOutsideListener = () => {
-        // document.addEventListener('focusout', outsideFocusEvent);
-
         if (props.triggerMode === "hover") {
             document.addEventListener("mouseover", outsideHoverEvent);
         } else {
             if (props.autoClose) {
-                document.addEventListener("mousedown", outsidePointerEventListener);
-                document.addEventListener("touchstart", outsidePointerEventListener);
+                document.addEventListener("pointerdown", outsidePointerEventListener);
             }
         }
     };
@@ -129,8 +132,7 @@ export function Popover(props: Props): ReactElement {
     const destroyOutsideListener = () => {
         document.removeEventListener("focusout", outsideFocusEvent);
         document.removeEventListener("mouseover", outsideHoverEvent);
-        document.removeEventListener("mousedown", outsidePointerEventListener);
-        document.removeEventListener("touchstart", outsidePointerEventListener);
+        document.removeEventListener("pointerdown", outsidePointerEventListener);
     };
 
     const onHoverEvent = (event: MouseEvent) => {
@@ -141,7 +143,7 @@ export function Popover(props: Props): ReactElement {
         }
     };
 
-    const onClickEvent = (event: MouseEvent | TouchEvent) => {
+    const onClickEvent = (event: MouseEvent | TouchEvent | PointerEvent) => {
         const insideTarget = eventInsideTriggerTarget(event, menuTrigger);
 
         if (insideTarget) {
@@ -170,8 +172,8 @@ export function Popover(props: Props): ReactElement {
 
     const initInsideListener = () => {
         if (props.triggerMode === "leftClick") {
-            document.addEventListener("mousedown", onClickEvent);
-            document.addEventListener("touchstart", onClickEvent);
+            document.addEventListener("pointerup", onClickEvent);
+            // document.addEventListener("touchstart", onClickEvent);
         }
 
         if (props.triggerMode === "hover") {
@@ -188,8 +190,8 @@ export function Popover(props: Props): ReactElement {
     };
 
     const destroyInsideListener = () => {
-        document.removeEventListener("mousedown", onClickEvent);
-        document.removeEventListener("touchstart", onClickEvent);
+        document.removeEventListener("pointerup", onClickEvent);
+        // document.removeEventListener("touchstart", onClickEvent);
         document.removeEventListener("mouseover", onHoverEvent);
         document.removeEventListener("focusin", onFocusEvent);
         document.removeEventListener("contextmenu", onContextMenuEvent);

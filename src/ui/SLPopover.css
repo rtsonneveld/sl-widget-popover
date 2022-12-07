@@ -1,6 +1,6 @@
 .sl-popover {
     filter: drop-shadow(var(--sl-popover-box-shadow, 0 0 4px rgba(0, 0, 0, .25)));
-    z-index: var(--sl-popover-z-index, 9999999);
+    z-index: var(--sl-popover-z-index, 999);
 }
 
 .sl-popover-content {

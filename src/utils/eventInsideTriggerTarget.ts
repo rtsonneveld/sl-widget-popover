@@ -1,5 +1,5 @@
 export const eventInsideTriggerTarget = (
-    event: MouseEvent | TouchEvent | FocusEvent,
+    event: MouseEvent | TouchEvent | FocusEvent | PointerEvent,
     menuTrigger: HTMLElement | null
 ): boolean => {
     const target = event.target as Element;
