@@ -147,6 +147,12 @@ const Popper = React.forwardRef<PopoverRef | undefined, Props>((props: Props, re
         return () => clearTimeout(timeoutId);
     }, [props.visible]);
 
+    useEffect(() => {
+        if (menuElement) {
+            menuElement.style.setProperty('--popover-inset', `${props.offsetDistance ? props.offsetDistance : 8}px`);
+        }
+    }, [menuElement])
+
     return ReactDOM.createPortal(renderMenu(), document.body);
 });
 

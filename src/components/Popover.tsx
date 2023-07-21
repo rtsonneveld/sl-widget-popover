@@ -5,6 +5,7 @@ import { eventInsideTriggerTarget } from "src/utils/eventInsideTriggerTarget";
 import { eventOutsideTarget } from "src/utils/eventOutsideTarget";
 import { PlacementEnum, TriggerModeEnum } from "typings/SLPopoverProps";
 import Popper, { PopoverRef } from "./Popper";
+import { useDelayVisible } from "src/hooks/useDelayVisible";
 
 interface Props {
     name: string;
@@ -24,6 +25,7 @@ export function Popover(props: Props): ReactElement {
     const [isVisible, _setIsVisible] = useState(false);
     const isVisibleRef = useRef(false);
     const [menuTrigger, setMenuTrigger] = useState<HTMLElement | null>(null);
+    const shouldRender = useDelayVisible(isVisible);
     const visibleByFocusRef = useRef(false);
     const popover = useRef<PopoverRef>();
 
@@ -36,24 +38,23 @@ export function Popover(props: Props): ReactElement {
         visibleByFocusRef.current = visible;
     };
 
-    const registerPublicApi = () => {
-        if (window && !window.slPopover) {
-            window.slPopover = {};
-        }
-
-        window.slPopover[props.name] = {
-            hideMenu: () => hideMenu()
-        };
-    };
-
     const registerActivePopover = () => {
         if (window && !window.slPopover) {
             window.slPopover = {};
         }
 
+        if (!window.slPopover.items) {
+            window.slPopover.items = {};
+        }
+
+        window.slPopover.items[props.name] = {
+            hideMenu: () => hideMenu()
+        };
+
         window.slPopover.activePopover = {
             name: props.name,
-            autoClose: props.autoClose
+            autoClose: props.autoClose,
+            hideMenu: () => hideMenu()
         };
     };
 
@@ -201,7 +202,6 @@ export function Popover(props: Props): ReactElement {
         if (menuTrigger) {
             initInsideListener();
             initOutsideListener();
-            registerPublicApi();
         }
 
         return () => {
@@ -227,7 +227,7 @@ export function Popover(props: Props): ReactElement {
     return (
         <React.Fragment>
             {renderMenuTrigger()}
-            {
+            {shouldRender && (
                 <Popper
                     className={props.className}
                     ref={popover}
@@ -239,7 +239,7 @@ export function Popover(props: Props): ReactElement {
                     triggerMode={props.triggerMode}
                     offsetDistance={props.offsetDistance}
                 />
-            }
+            )}
         </React.Fragment>
     );
 }
