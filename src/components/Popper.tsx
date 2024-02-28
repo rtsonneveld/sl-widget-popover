@@ -149,9 +149,9 @@ const Popper = React.forwardRef<PopoverRef | undefined, Props>((props: Props, re
 
     useEffect(() => {
         if (menuElement) {
-            menuElement.style.setProperty('--popover-inset', `${props.offsetDistance ? props.offsetDistance : 8}px`);
+            menuElement.style.setProperty("--popover-inset", `${props.offsetDistance ? props.offsetDistance : 8}px`);
         }
-    }, [menuElement])
+    }, [menuElement]);
 
     return ReactDOM.createPortal(renderMenu(), document.body);
 });
