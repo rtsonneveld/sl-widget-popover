@@ -47,6 +47,10 @@
                         <enumerationValue key="leftEnd">Left end</enumerationValue>
                     </enumerationValues>
                 </property>
+                <property key="hideTriggerClass" type="string" required="false">
+                    <caption>Hide trigger class</caption>
+                    <description>Hide the trigger when all elements with the specified class are invisible. (optional)</description>
+                </property>
                 <property key="popoverTriggerContent" type="widgets" required="true">
                     <caption>Place popover trigger content here. This will trigger the popover visibility.</caption>
                     <description />

@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "config": {
-    "projectPath": "C:\\Mendix\\MJvanRIEL-main/",
+    "projectPath": "C:\\Users\\Robin\\Mendix\\PopoverTest/",
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },
@@ -25,14 +25,25 @@
     "release": "pluggable-widgets-tools release:web"
   },
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "9.18.0",
+    "@mendix/pluggable-widgets-tools": "^10.16.0",
     "@types/big.js": "^6.0.2",
-    "@types/react": "~17.0.1",
-    "@types/react-dom": "~17.0.1"
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.2",
     "classnames": "^2.2.6",
     "react-popper": "^2.2.5"
+  },
+  "overrides": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0"
+  },
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0"
   }
 }

@@ -1,7 +1,7 @@
 /**
  * This file was generated from SLPopover.xml
  * WARNING: All changes made to this file will be overwritten
- * @author Mendix UI Content Team
+ * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
 
@@ -19,6 +19,7 @@ export interface SLPopoverContainerProps {
     autoClose: boolean;
     showArrow: boolean;
     placement: PlacementEnum;
+    hideTriggerClass: string;
     popoverTriggerContent: ReactNode;
     popoverContent: ReactNode;
 }
@@ -32,11 +33,13 @@ export interface SLPopoverPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
+    renderMode?: "design" | "xray" | "structure";
     triggerMode: TriggerModeEnum;
     offsetDistance: number | null;
     autoClose: boolean;
     showArrow: boolean;
     placement: PlacementEnum;
-    popoverTriggerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
-    popoverContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    hideTriggerClass: string;
+    popoverTriggerContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    popoverContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
 }

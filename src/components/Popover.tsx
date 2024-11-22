@@ -17,6 +17,7 @@ interface Props {
     popoverTriggerContent: ReactNode;
     popoverContent: ReactNode;
     offsetDistance: number;
+    hideTriggerClass: string;
 }
 
 declare let window: any;
@@ -218,11 +219,96 @@ export function Popover(props: Props): ReactElement {
         });
     };
 
-    const renderMenuTrigger = () => (
-        <div className={getPopoverTriggerClassnames()} ref={setMenuTrigger}>
-            {props.popoverTriggerContent}
-        </div>
-    );
+    function findVisibleNodeWithClass(node: any, root:any, checkClass: string): boolean {
+        if (node.props && node.props.class && node.props.class.includes(checkClass)) {
+            const visibilityKey = `${node.key}$visibility`;
+            console.log("Find "+visibilityKey);
+            if (!findNodeByKey(root, visibilityKey)) {
+                return true;
+            }
+        }
+    
+        if (node.props && node.props.content) {
+            for (const child of node.props.content) {
+                if (findVisibleNodeWithClass(child, root, checkClass)) {
+                    return true;
+                }
+            }
+        }
+        if (node.props && node.props.contents) {
+            for (const child of node.props.contents) {
+                if (findVisibleNodeWithClass(child, root, checkClass)) {
+                    return true;
+                }
+            }
+        }
+
+        if (Array.isArray(node)) {
+            for(const child of node) {
+                if (findVisibleNodeWithClass(child, root, checkClass)) {
+                    return true;
+                }
+            }
+        }
+    
+        return false;
+    }
+    
+    function findNodeByKey(node: any, key: string): Node | null {
+        if (node.key === key) {
+            return node;
+        }
+
+        console.log("Check "+JSON.stringify(node)+" for "+key);
+    
+        if (node.props && node.props.content) {
+            for (const child of node.props.content) {
+                const found = findNodeByKey(child, key);
+                if (found) {
+                    return found;
+                }
+            }
+        }
+        if (node.props && node.props.contents) {
+            for (const child of node.props.contents) {
+                const found = findNodeByKey(child, key);
+                if (found) {
+                    return found;
+                }
+            }
+        }
+
+        if (Array.isArray(node)) {
+            for(const child of node) {
+                const foundNode = findNodeByKey(child, key);
+                if (foundNode) {
+                    return foundNode;
+                }
+            }
+        }
+    
+        return null;
+    }
+    
+
+    const renderMenuTrigger = () => {
+        
+        console.info(JSON.stringify(props.popoverContent));
+
+        const hasVisibleContent = (!props.hideTriggerClass) || findVisibleNodeWithClass(props.popoverContent, props.popoverContent, props.hideTriggerClass);
+
+        return (
+            <div>
+            <span>Visible content: {hasVisibleContent?"true":"false"}</span>
+            {hasVisibleContent && 
+                <div className={getPopoverTriggerClassnames()} ref={setMenuTrigger}>
+                    {props.popoverTriggerContent}
+                </div>
+            }
+            
+            </div>
+        );
+    };
 
     return (
         <React.Fragment>
