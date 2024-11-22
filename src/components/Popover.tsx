@@ -222,7 +222,7 @@ export function Popover(props: Props): ReactElement {
     function findVisibleNodeWithClass(node: any, root:any, checkClass: string): boolean {
         if (node.props && node.props.class && node.props.class.includes(checkClass)) {
             const visibilityKey = `${node.key}$visibility`;
-            console.log("Find "+visibilityKey);
+            
             if (!findNodeByKey(root, visibilityKey)) {
                 return true;
             }
@@ -258,8 +258,6 @@ export function Popover(props: Props): ReactElement {
         if (node.key === key) {
             return node;
         }
-
-        console.log("Check "+JSON.stringify(node)+" for "+key);
     
         if (node.props && node.props.content) {
             for (const child of node.props.content) {
@@ -292,20 +290,12 @@ export function Popover(props: Props): ReactElement {
     
 
     const renderMenuTrigger = () => {
-        
-        console.info(JSON.stringify(props.popoverContent));
 
         const hasVisibleContent = (!props.hideTriggerClass) || findVisibleNodeWithClass(props.popoverContent, props.popoverContent, props.hideTriggerClass);
 
-        return (
-            <div>
-            <span>Visible content: {hasVisibleContent?"true":"false"}</span>
-            {hasVisibleContent && 
-                <div className={getPopoverTriggerClassnames()} ref={setMenuTrigger}>
-                    {props.popoverTriggerContent}
-                </div>
-            }
-            
+        return hasVisibleContent && (
+            <div className={getPopoverTriggerClassnames()} ref={setMenuTrigger}>
+                {props.popoverTriggerContent}
             </div>
         );
     };
